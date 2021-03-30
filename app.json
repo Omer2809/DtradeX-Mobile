@@ -23,11 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.codewithmosh.donewithit",
+      "bundleIdentifier": "com.omer786501.donewithit",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.codewithmosh.donewithit",
+      "package": "com.omer786501.donewithit",
       "versionCode": 1
     },
     "description": "A marketplace for selling the stuff you don't need anymore.",

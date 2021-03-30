@@ -21,6 +21,18 @@ import {
 import useAuth from "../auth/useAuth";
 import Icon from "../components/Icon";
 
+function getTime(days, startDate) {
+  const oneDay = 1000 * 60 * 60 * 24;
+  const today = new Date();
+  const createdDate = new Date(startDate);
+
+  // console.log();
+  return (
+    days -
+    (Math.round(today.getTime() - createdDate.getTime()) / oneDay).toFixed(0)
+  );
+}
+
 function ListingDetailsScreen({ route, navigation }) {
   const { user } = useAuth();
   const { listing, data } = route.params;
@@ -43,7 +55,9 @@ function ListingDetailsScreen({ route, navigation }) {
         />
         <View style={styles.ImageOverlay}></View>
         <Text style={styles.ImageDescription}>
-          <Text style={styles.ImageText} numberOfLines={4}>{listing.title}</Text>
+          <Text style={styles.ImageText} numberOfLines={4}>
+            {listing.title}
+          </Text>
           {`\n`}
           {listing.description}
           ....
@@ -65,6 +79,27 @@ function ListingDetailsScreen({ route, navigation }) {
           {listing.categoryId.label}
         </Text>
       </View>
+      {listing.bidding === "Yes" && (
+        <>
+          <View style={{ ...styles.ImagePrice, right: 250, top: 319 }}>
+            <Text style={{ color: colors.white, fontSize: 14 }}>
+              Highest Bidder: {listing.bidder}fwefr
+            </Text>
+          </View>
+          <View style={{ ...styles.ImagePrice, right: 100, top: 419 }}>
+            <Text style={{ color: colors.white, fontSize: 14 }}>
+              Time left for bid: {getTime(listing.days, listing.createdAt)}
+            </Text>
+          </View>
+          {getTime(listing.days, listing.createdAt) <= 0 && (
+            <View style={styles.TimeOut}>
+              <Text style={{ color: colors.white, fontSize: 50 }}>
+                SOLD {listing.bidder}Omer won 
+              </Text>
+            </View>
+          )}
+        </>
+      )}
       <View
         onStartShouldSetResponder={() => navigation.goBack()}
         style={{ fontWeight: "bold", position: "absolute", top: 55, left: 25 }}
@@ -159,13 +194,13 @@ function ListingDetailsScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   image: {
     width: "100%",
-    height: 440,
+    height: 340,
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
   },
   ImageOverlay: {
     width: "100%",
-    height: 440,
+    height: 340,
     position: "absolute",
     backgroundColor: "#333",
     borderBottomLeftRadius: 30,
@@ -185,7 +220,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     // right: 18,
     right: 135,
-    top: 419,
+    top: 319,
     paddingVertical: 10,
     paddingRight: 16,
     paddingLeft: 10,
@@ -196,11 +231,23 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: colors.primary,
     right: 30,
-    top: 419,
+    top: 319,
     zIndex: 50,
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 40,
+  },
+  TimeOut: {
+    position: "absolute",
+    backgroundColor: colors.secondary,
+    // right: 30,
+    textAlign:"center",
+    top: 319,
+    zIndex: 60,
+    paddingHorizontal: 30,
+    paddingVertical: 30,
+    borderRadius: 40,
+    fontSize: 30,
   },
   ImageDescription: {
     position: "absolute",

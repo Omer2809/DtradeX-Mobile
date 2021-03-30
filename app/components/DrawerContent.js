@@ -49,7 +49,7 @@ export function DrawerContent(props) {
             source={require("../assets/cc.jpg")}
             style={{ padding: 16, paddingTop: 48 }}
           >
-            {getUsersApi.data.images && getUsersApi.data.images.length !== 0 ? (
+            {getUsersApi.data && getUsersApi.data.images && getUsersApi.data.images.length !== 0 ? (
               <TouchableWithoutFeedback onPress={handlePress}>
                 <View>
                   <Image

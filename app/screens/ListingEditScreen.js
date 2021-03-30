@@ -30,8 +30,26 @@ const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(100000).label("Price"),
   description: Yup.string().label("Description"),
+  bidding: Yup.object().required().nullable().label("Bidding"),
   category: Yup.object().required().nullable().label("Category"),
 });
+
+const boolArray = [
+  {
+    _id: 1,
+    icon: "check",
+    backgroundColor: "blue",
+    label: "Yes",
+    value: "Yes",
+  },
+  {
+    _id: 2,
+    icon: "close",
+    backgroundColor: "red",
+    label: "No",
+    value: "No",
+  },
+];
 
 function getString(image) {
   return image.url.substring(34, image.url.length - 9);
@@ -44,7 +62,7 @@ function ListingEditScreen({ route, navigation }) {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [initialImages, setInitialImages] = useState(prevListing.images);
-
+  console.log(prevListing);
   useEffect(() => {
     getCategoriesApi.request();
     const unsubscribe = navigation.addListener("focus", () => {
@@ -100,9 +118,12 @@ function ListingEditScreen({ route, navigation }) {
         <Form
           initialValues={{
             title: prevListing.title,
-            price: prevListing.price.toString(),
+            price: prevListing.price && prevListing.price.toString(),
+            days: prevListing.days && prevListing.days.toString(),
             description: prevListing.description,
             category: prevListing.categoryId,
+            bidding:
+              prevListing.bidding === "Yes" ? boolArray[0] : boolArray[1],
             images: [],
           }}
           onSubmit={handleSubmit}
@@ -130,6 +151,21 @@ function ListingEditScreen({ route, navigation }) {
             PickerItemComponent={CategoryPickerItem}
             placeholder="Category"
             width="50%"
+          />
+          <Picker
+            items={boolArray}
+            name="bidding"
+            numberOfColumns={2}
+            PickerItemComponent={CategoryPickerItem}
+            placeholder="Bidding"
+            width="50%"
+          />
+          <FormField
+            keyboardType="numeric"
+            maxLength={2}
+            name="days"
+            placeholder="No. of Days"
+            width={150}
           />
           <FormField
             maxLength={255}

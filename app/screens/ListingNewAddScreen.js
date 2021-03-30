@@ -27,10 +27,29 @@ import ImageShow from "../components/ImageShow";
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(100000).label("Price"),
-  description: Yup.string().label("Description"),
+  // days: Yup.number().min(1).max(2).label("No of days"),
+  description: Yup.string().required().label("Description"),
   category: Yup.object().required().nullable().label("Category"),
+  bidding: Yup.object().required().nullable().label("Bidding"),
   images: Yup.array().min(1, "Please select at least one image."),
 });
+
+const boolArray = [
+  {
+    _id: 1,
+    icon: "check",
+    backgroundColor: "blue",
+    label: "Yes",
+    value: "yes",
+  },
+  {
+    _id: 2,
+    icon: "close",
+    backgroundColor: "red",
+    label: "No",
+    value: "No",
+  },
+];
 
 function ListingNewAddScreen({ route, navigation }) {
   const getCategoriesApi = useApi(categoriesApi.getCategories);
@@ -51,6 +70,8 @@ function ListingNewAddScreen({ route, navigation }) {
       { ...listing, location, userId: user.userId },
       (progress) => setProgress(progress)
     );
+
+    console.log("resutk:" + result);
 
     if (!result.ok) {
       setUploadVisible(false);
@@ -76,8 +97,10 @@ function ListingNewAddScreen({ route, navigation }) {
           initialValues={{
             title: "",
             price: "",
+            days: "",
             description: "",
             category: null,
+            bidding: null,
             images: [],
           }}
           onSubmit={handleSubmit}
@@ -99,6 +122,21 @@ function ListingNewAddScreen({ route, navigation }) {
             PickerItemComponent={CategoryPickerItem}
             placeholder="Category"
             width="50%"
+          />
+          <Picker
+            items={boolArray}
+            name="bidding"
+            numberOfColumns={2}
+            PickerItemComponent={CategoryPickerItem}
+            placeholder="Bidding"
+            width="50%"
+          />
+          <FormField
+            keyboardType="numeric"
+            maxLength={2}
+            name="days"
+            placeholder="No. of Days"
+            width={150}
           />
           <FormField
             maxLength={255}

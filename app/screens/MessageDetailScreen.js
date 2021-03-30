@@ -45,9 +45,7 @@ function MessageDetailsScreen({ route, navigation }) {
         <Text style={styles.ImageDescription} numberOfLines={4}>
           <Text style={styles.ImageText}>{message.listing.title}</Text>
           {`\n`}
-          {message.listing.description}... fshf sfjhsakjf hksjjafh sdkfjjh jfsh
-          a ksahf kjsfh ksfdj hhds safhjsdhfksjdaf hksjdfhsdk fksdjf sdjfhkd
-          kjsdfh sdkfjh ksjdfhd skkjsdf hjsdfh
+          {message.listing.description}...
         </Text>
       </TouchableOpacity>
       <View style={styles.ImagePrice}>
@@ -57,50 +55,6 @@ function MessageDetailsScreen({ route, navigation }) {
       </View>
       <View style={styles.userContainer}>
         <View style={{}}>
-          {getChatsApi.data.length != 0 && (
-            <>
-              <View style={[styles.displayflex]}>
-                {getUsersApi.data && getUsersApi.data.image ? (
-                  <Image
-                    style={styles.profile}
-                    tint="light"
-                    preview={{ uri: getUsersApi.data.images[0].thumbnailUrl }}
-                    uri={getUsersApi.data.images[0].url}
-                  />
-                ) : (
-                  <Icon
-                    name={"account-outline"}
-                    size={35}
-                    backgroundColor={colors.medium}
-                  />
-                )}
-                <Text
-                  style={{
-                    fontSize: 15,
-                    margin: 8,
-                    marginHorizontal: 5,
-                  }}
-                >
-                  {getUsersApi.data.name} :
-                </Text>
-              </View>
-              <Text
-                style={{
-                  backgroundColor: colors.light,
-                  marginLeft: 30,
-                  // paddingHorizontal: 10,
-                  padding: 12,
-                  borderRadius: 20,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 15,
-                }}
-                numberOfLines={4}
-              >{console.log(getChatsApi.data)}
-                " {getChatsApi.data[0].content} ..."
-              </Text>
-            </>
-          )}
           <View style={[styles.displayflex]}>
             {message.fromUser.images && message.fromUser.images.length != 0 ? (
               <Image
@@ -140,8 +94,54 @@ function MessageDetailsScreen({ route, navigation }) {
             }}
             numberOfLines={4}
           >
-            " {message.content} ...  "
+            " {message.content} ... "
           </Text>
+          {/* {getChatsApi.data.length != 0 && (
+            <>
+            {console.log(getChatsApi.data)}
+              <View style={[styles.displayflex]}>
+                {getUsersApi.data && getUsersApi.data.image ? (
+                  <Image
+                    style={styles.profile}
+                    tint="light"
+                    preview={{ uri: getUsersApi.data.images[0].thumbnailUrl }}
+                    uri={getUsersApi.data.images[0].url}
+                  />
+                ) : (
+                  <Icon
+                    name={"account-outline"}
+                    size={35}
+                    backgroundColor={colors.medium}
+                  />
+                )}
+                <Text
+                  style={{
+                    fontSize: 15,
+                    margin: 8,
+                    marginHorizontal: 5,
+                  }}
+                >
+                  {getUsersApi.data.name} :
+                </Text>
+              </View>
+              <Text
+                style={{
+                  backgroundColor: colors.light,
+                  marginLeft: 30,
+                  // paddingHorizontal: 10,
+                  padding: 12,
+                  borderRadius: 20,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 15,
+                }}
+                numberOfLines={4}
+              >
+                {console.log(getChatsApi.data)}" {getChatsApi.data[0].content}{" "}
+                ..."
+              </Text>
+            </>
+          )} */}
         </View>
         <View style={[styles.displayflex]}>
           {getUsersApi.data && getUsersApi.data.image ? (
