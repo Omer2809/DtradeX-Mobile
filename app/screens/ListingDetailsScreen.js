@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
   KeyboardAvoidingView,
   Platform,
   FlatList,
+  Modal,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { Image } from "react-native-expo-image-cache";
 import routes from "../navigation/routes";
@@ -20,6 +21,7 @@ import {
 } from "react-native-gesture-handler";
 import useAuth from "../auth/useAuth";
 import Icon from "../components/Icon";
+import BiddingForm from "../components/BiddingForm";
 
 function getTime(days, startDate) {
   const oneDay = 1000 * 60 * 60 * 24;
@@ -36,7 +38,16 @@ function getTime(days, startDate) {
 function ListingDetailsScreen({ route, navigation }) {
   const { user } = useAuth();
   const { listing, data } = route.params;
-  console.log(route.params);
+  // console.log(route.params);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [bidder, setBidder] = useState(listing.bidder);
+  const [bid, setBid] = useState(listing.price);
+
+  const update = (newBid, newBidder) => {
+    setModalOpen(false);
+    setBid(newBid);
+    setBidder(newBidder);
+  };
 
   return (
     <KeyboardAvoidingView
@@ -63,9 +74,14 @@ function ListingDetailsScreen({ route, navigation }) {
           ....
         </Text>
       </TouchableOpacity>
-      <View style={styles.ImagePrice}>
-        <Text style={{ color: colors.white, fontSize: 14 }}>
-          Rs.{listing.price}
+      <View style={{ ...styles.ImagePrice, backgroundColor: colors.primary }}>
+        <Text
+          style={{
+            color: colors.white,
+            fontSize: 14,
+          }}
+        >
+          {listing.bidding === "Yes" && "Higest Bid :"} Rs.{bid}
         </Text>
       </View>
       <View style={styles.ImageCategory}>
@@ -81,23 +97,39 @@ function ListingDetailsScreen({ route, navigation }) {
       </View>
       {listing.bidding === "Yes" && (
         <>
-          <View style={{ ...styles.ImagePrice, right: 250, top: 319 }}>
-            <Text style={{ color: colors.white, fontSize: 14 }}>
-              Highest Bidder: {listing.bidder}fwefr
-            </Text>
-          </View>
-          <View style={{ ...styles.ImagePrice, right: 100, top: 419 }}>
-            <Text style={{ color: colors.white, fontSize: 14 }}>
-              Time left for bid: {getTime(listing.days, listing.createdAt)}
-            </Text>
-          </View>
           {getTime(listing.days, listing.createdAt) <= 0 && (
             <View style={styles.TimeOut}>
               <Text style={{ color: colors.white, fontSize: 50 }}>
-                SOLD {listing.bidder}Omer won 
+                SOLD {listing.bidder}Omer won
               </Text>
             </View>
           )}
+          <View style={{ ...styles.ImagePrice,  top: 363}}>
+            <Text style={{ color: colors.white, fontSize: 14 }}>
+              Highest Bidder: {bidder} johnson
+            </Text>
+          </View>
+          <View style={{ ...styles.ImagePrice,left:270, top: 363 }}>
+            <Text style={{ color: colors.white, fontSize: 14 }}>
+            {getTime(listing.days, listing.createdAt)} days left
+            </Text>
+          </View>
+
+          <TouchableOpacity onPress={() => setModalOpen(true)}>
+            <Text
+              style={{
+                marginHorizontal: 30,
+                marginTop: 70,
+                backgroundColor: "blue",
+                color: "white",
+                textAlign: "center",
+                borderRadius: 20,
+                paddingVertical: 15,
+              }}
+            >
+              Bid Now
+            </Text>
+          </TouchableOpacity>
         </>
       )}
       <View
@@ -111,7 +143,30 @@ function ListingDetailsScreen({ route, navigation }) {
           color="#fff"
         />
       </View>
-      <View style={{ paddingTop: 8 }}>
+
+      <Modal visible={modalOpen}>
+        <View style={{ flex: 1 }}>
+          <MaterialIcons
+            name="close"
+            size={30}
+            style={styles.modalClose}
+            onPress={() => setModalOpen(false)}
+          />
+          <Text>
+            Add your bidding highest bid:{listing.price}
+            highest bidder:{listing.bidder}
+          </Text>
+          <View style={{ paddingHorizontal: 20 }}>
+            <BiddingForm
+              listing={listing}
+              update={update}
+              btnName="Place Bid"
+            />
+          </View>
+        </View>
+      </Modal>
+
+      <View style={{}}>
         {listing.added_by.images && listing.added_by.images.length !== 0 ? (
           <ListItem
             title={listing.added_by.name}
@@ -219,7 +274,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: colors.primary,
     // right: 18,
-    right: 135,
+    right: 55,
     top: 319,
     paddingVertical: 10,
     paddingRight: 16,
@@ -229,8 +284,8 @@ const styles = StyleSheet.create({
   },
   ImagePrice: {
     position: "absolute",
-    backgroundColor: colors.primary,
-    right: 30,
+    backgroundColor: colors.profile,
+    left: 25,
     top: 319,
     zIndex: 50,
     paddingHorizontal: 16,
@@ -241,7 +296,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: colors.secondary,
     // right: 30,
-    textAlign:"center",
+    textAlign: "center",
     top: 319,
     zIndex: 60,
     paddingHorizontal: 30,
@@ -275,6 +330,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     left: 10,
     bottom: 20,
+  },
+  modalClose: {
+    marginTop: 20,
+    borderWidth: 1,
+    borderColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
   },
 });
 
