@@ -14,7 +14,7 @@ const updateListingPrice = (listingId, userId, bid) =>
 const addListing = (listing, onUploadProgress) => {
   const data = new FormData();
 
-  console.log("what we hav ensend to the addlistning:" + listing);
+  console.log("what we hav ensend to the addlistning:",listing.images);
 
   data.append("title", listing.title);
   data.append("price", listing.price);
@@ -40,7 +40,7 @@ const addListing = (listing, onUploadProgress) => {
   if (listing.oldImages && listing.oldImages.length > 0)
     data.append("oldImages", JSON.stringify(listing.oldImages));
 
-  console.log("inbefore api call:" + listing);
+  console.log("inbefore api call:" , data);
 
   if (listing._id)
     return client.put(`${endpoint}/${listing._id}`, data, {

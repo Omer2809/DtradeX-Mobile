@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, View, Alert } from "react-native";
 
 import myApi from "../api/my";
 import Screen from "../components/Screen";
@@ -14,13 +14,45 @@ import routes from "../navigation/routes";
 import messagesApi from "../api/messages";
 import ActivityIndicator from "../components/ActivityIndicator";
 import AppText from "../components/Text";
+import useAuth from "../auth/useAuth";
+import Icon from "../components/Icon";
+
+import colors from "../config/colors";
+
+function getChats(messages) {
+  return messages.reduce((acc, curr) => {
+    if (checkIfAlreadyExist(curr)) return acc;
+    return [...acc, curr];
+
+    function checkIfAlreadyExist(currentVal) {
+      return acc.some((message) => {
+        return (
+          message.listing._id === currentVal.listing._id &&
+          message.fromUser._id === currentVal.fromUser._id
+        );
+      });
+    }
+  }, []);
+}
 
 function MessagesScreen({ navigation }) {
-  const getMyMessagesApi = useApi(myApi.getMyMessages);
+  const { user } = useAuth();
+  const getMyMessagesApi = useApi(messagesApi.getMyMessages);
   const [refreshing, setRefreshing] = useState(false);
+  const [chats, setChats] = useState([]);
 
   useEffect(() => {
     getMyMessagesApi.request();
+
+    setChats(
+      getChats(
+        getMyMessagesApi.data.filter(
+          (c) => c.participants.filter((u) => u.name === user.name).length != 0
+        )
+      )
+      // getChats(getMyMessagesApi.data)
+    );
+
     setRefreshing(false);
     const unsubscribe = navigation.addListener("focus", () => {
       setRefreshing(true);
@@ -30,17 +62,27 @@ function MessagesScreen({ navigation }) {
     return unsubscribe;
   }, [refreshing]);
 
-  const handleDelete = async (message) => {
-    const originalData = getMyMessagesApi.data;
-    const messages = originalData.filter((l) => l._id !== message._id);
-    getMyMessagesApi.setData(messages);
+  const handleChatDelete = async (chat) => {
+    console.log(chat, chats);
+    const originalChats = chats;
+    const filteredChats = originalChats.filter((c) => c._id !== chat._id);
+    console.log(chats, filteredChats);
 
-    const result = await messagesApi.deleteMessage(message._id);
+    setChats(filteredChats);
+
+    const result = await messagesApi.deleteChat(chat._id);
 
     if (!result.ok) {
-      getMyMessagesApi.setData(originalData);
-      return alert("Could not delete the message");
+      setChats(originalData);
+      return alert("Could not delete the Chat");
     }
+  };
+
+  const handlePress = (item) => {
+    Alert.alert("Delete", "Are you sure you want to delete this Chat?", [
+      { text: "Yes", onPress: () => handleChatDelete(item) },
+      { text: "No" },
+    ]);
   };
 
   return (
@@ -60,7 +102,7 @@ function MessagesScreen({ navigation }) {
             <Button title="Retry" onPress={getMyMessagesApi.request} />
           </View>
         )}
-        {getMyMessagesApi.data.length === 0 ? (
+        {getMyMessagesApi?.data?.length === 0 ? (
           <Text style={{ paddingLeft: 20 }}>
             You Don't have Any messages Yet...
           </Text>
@@ -69,30 +111,45 @@ function MessagesScreen({ navigation }) {
             <Text
               style={{ paddingLeft: 20, color: "#669900", marginBottom: 10 }}
             >
-              You got {getMyMessagesApi.data.length} messages ...
+              You got {chats.length} messages ...
             </Text>
             <FlatList
-              data={getMyMessagesApi.data}
+              data={chats}
               keyExtractor={(message) => message._id}
-              renderItem={({ item }) => (
-                <ListItem
-                  title={item.fromUser && item.fromUser.name}
-                  subTitle={item.content}
-                  imageUrl={
-                    item.fromUser.images[0] && item.fromUser.images[0].url
-                  }
-                  thumbnailUrl={
-                    item.fromUser.images[0] &&
-                    item.fromUser.images[0].thumbnailUrl
-                  }
-                  onPress={() =>
-                    navigation.navigate(routes.MESSAGE_DETAILS, item)
-                  }
-                  renderRightActions={() => (
-                    <ListItemDeleteAction onPress={() => handleDelete(item)} />
-                  )}
-                />
-              )}
+              renderItem={({ item }) => {
+                return item.fromUser?.images?.length !== 0 ? (
+                  <ListItem
+                    title={item.fromUser?.name}
+                    // subTitle={item.content}
+                    imageUrl={item.fromUser.images[0]?.url}
+                    thumbnailUrl={item.fromUser.images[0]?.thumbnailUrl}
+                    onPress={() =>
+                      navigation.navigate(routes.MESSAGE_DETAILS, item)
+                    }
+                    renderRightActions={() => (
+                      <ListItemDeleteAction onPress={() => handlePress(item)} />
+                    )}
+                  />
+                ) : (
+                  <ListItem
+                    title={item.fromUser?.name}
+                    // subTitle={item.content}
+                    onPress={() =>
+                      navigation.navigate(routes.MESSAGE_DETAILS, item)
+                    }
+                    renderRightActions={() => (
+                      <ListItemDeleteAction onPress={() => handlePress(item)} />
+                    )}
+                    IconComponent={
+                      <Icon
+                        name={"account-outline"}
+                        size={60}
+                        backgroundColor={colors.profile}
+                      />
+                    }
+                  />
+                );
+              }}
               ItemSeparatorComponent={ListItemSeparator}
               refreshing={refreshing}
               onRefresh={() => setRefreshing(true)}

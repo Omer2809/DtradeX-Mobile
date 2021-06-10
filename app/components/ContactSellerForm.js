@@ -7,15 +7,32 @@ import { Form, FormField, SubmitButton } from "./forms";
 import messagesApi from "../api/messages";
 import useAuth from "../auth/useAuth";
 
-function ContactSellerForm({ listing, btnName, reply, toId }) {
+function ContactSellerForm({ listing, btnName, toId,setUpdateMessages }) {
   const { user } = useAuth();
 
   const handleSubmit = async ({ message }, { resetForm }) => {
     Keyboard.dismiss();
 
-    const result = reply
-      ? await messagesApi.sendReply(message, listing._id, toId, user.userId)
-      : await messagesApi.send(message, listing._id, user.userId);
+    console.log("in msg from", message);
+
+    if (message.trim().length === 0) Alert.alert("plz enter thr msg..");
+
+    const toUserId = toId || listing.added_by._id;
+
+    const result = await messagesApi.send(
+      message,
+      listing._id,
+      toUserId,
+      user.userId
+    );
+
+    console.log("in msg", user, result);
+
+    if (toId) setUpdateMessages(result.data);
+
+    // const result = reply
+    //   ? await messagesApi.sendReply(message, listing._id, toId, user.userId)
+    //   : await messagesApi.send(message, listing._id, user.userId);
 
     if (!result.ok) {
       console.log("Error", result);

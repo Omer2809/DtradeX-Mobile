@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import AppNavigator from "./AppNavigator";
 import FeedNavigator from "./FeedNavigator";
-import ListingEditScreen from "../screens/ListingEditScreen";
+import ListingEditScreen from "../screens/listingScreens/ListingEditScreen";
 import AccountNavigator from "./AccountNavigator";
 import { DrawerContent } from "../components/DrawerContent";
 import useAuth from "../auth/useAuth";

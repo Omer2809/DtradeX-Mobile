@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mydwt",
-    "slug": "mydwt",
+    "name": "dtradex",
+    "slug": "dtradex",
     "platforms": [
       "ios",
       "android",
@@ -23,11 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.omer786501.donewithit",
+      "bundleIdentifier": "com.omer786501.dtradex",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.omer786501.donewithit",
+      "package": "com.omer786501.dtradex",
       "versionCode": 1
     },
     "description": "A marketplace for selling the stuff you don't need anymore.",

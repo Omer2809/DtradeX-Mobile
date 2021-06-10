@@ -1,12 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import ListingsScreen from "../screens/ListingsScreen";
-import ListingDetailsScreen from "../screens/ListingDetailsScreen";
+import HomeScreen from "../screens/HomeScreen/HomeScreen";
+import ListingDetailsScreen from "../screens/listingScreens/ListingDetailsScreen";
 import ViewImageScreen from "../screens/ViewImageScreen";
-import ListingEditScreen from "../screens/ListingEditScreen";
+import ListingEditScreen from "../screens/listingScreens/ListingEditScreen";
 import MessagesScreen from "../screens/MessagesScreen";
-import MyListingsScreen from "../screens/MyListingsScreen";
-import FavoritesScreen from "../screens/FavoritesScreen";
+import MyListingsScreen from "../screens/account/MyListingsScreen";
+import FavoritesScreen from "../screens/account/FavoritesScreen";
 import MessageDetailsScreen from "../screens/MessageDetailScreen";
 // import Home from "../components/home";
 
@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 
 const FeedNavigator = () => (
   <Stack.Navigator mode="modal" screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Listings" component={ListingsScreen} />
+    <Stack.Screen name="Listings" component={HomeScreen} />
     {/* <Stack.Screen name="Home" component={Home} /> */}
     <Stack.Screen name="ListingDetails" component={ListingDetailsScreen} />
     <Stack.Screen name="ImageView" component={ViewImageScreen} />

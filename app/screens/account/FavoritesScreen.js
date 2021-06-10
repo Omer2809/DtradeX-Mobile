@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, View } from "react-native";
 
-import Screen from "../components/Screen";
-import Text from "../components/Text";
-import Button from "../components/Button";
+import Screen from "../../components/Screen";
+import Text from "../../components/Text";
+import Button from "../../components/Button";
 import {
   ListItem,
   ListItemDeleteAction,
   ListItemSeparator,
-} from "../components/lists";
-import routes from "../navigation/routes";
-import ActivityIndicator from "../components/ActivityIndicator";
-import AppText from "../components/Text";
-import myApi from "../api/my";
-import favoritesApi from "../api/favorites";
-import listingsApi from "../api/listings";
-import getTrendingData from "../utility/getTrendingData";
+} from "../../components/lists";
+import routes from "../../navigation/routes";
+import ActivityIndicator from "../../components/ActivityIndicator";
+import AppText from "../../components/Text";
+import myApi from "../../api/my";
+import favoritesApi from "../../api/favorites";
+import listingsApi from "../../api/listings";
+import getTrendingData from "../../utility/getTrendingData";
 
 function FavoritesScreen({ navigation }) {
   const getFavoritesApi = useApi(myApi.getFavorites);
@@ -89,21 +89,20 @@ function FavoritesScreen({ navigation }) {
             >
               {getFavoritesApi.data.length} products saved ...
             </Text>
+            {/* {console.log(getFavoritesApi.data)} */}
             <FlatList
               data={getFavoritesApi.data}
               keyExtractor={(favorite) => favorite._id}
               renderItem={({ item }) => (
                 <ListItem
-                  title={item.listing && item.listing.title}
-                  subTitle={item.listing.description}
-                  imageUrl={
-                    item.listing.images[0] && item.listing.images[0].url
-                  }
-                  thumbnailUrl={
-                    item.listing.images[0] &&
-                    item.listing.images[0].thumbnailUrl
-                  }
-                  onPress={() => handleSelect(item.listing._id)}
+                  title={item.listing?.title}
+                  subTitle={item.listing?.description}
+                  imageUrl={item.listing?.images[0]?.url}
+                  // thumbnailUrl={
+                  //   item.listing.images[0] &&
+                  //   item.listing.images[0].thumbnailUrl
+                  // }
+                  onPress={() => handleSelect(item.listing?._id)}
                   renderRightActions={() => (
                     <ListItemDeleteAction onPress={() => handleDelete(item)} />
                   )}

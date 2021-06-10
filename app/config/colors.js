@@ -1,5 +1,7 @@
 export default {
   primary: "#fc5c65",
+  // primary: "#132c20",
+  // primary: "#669966",
   secondary: "#4ecdc4",
   black: "#000",
   white: "#fff",
@@ -9,5 +11,5 @@ export default {
   danger: "#ff5252",
   edit: "#4ecdc4",
   profile: "#669966",
-  saved:"#D198C5FF"
+  saved: "#D198C5FF",
 };

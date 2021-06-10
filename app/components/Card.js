@@ -28,7 +28,7 @@ function Card({
 
   useEffect(() => {
     checkfavorited(itemId, userId);
-  }, [count,itemId, userId]);
+  }, [count, itemId, userId]);
 
   const checkfavorited = async (itemId, userId) => {
     const result = await favoritesApi.checkFavorite(itemId, userId);
@@ -73,7 +73,7 @@ function Card({
           />
           <View style={styles.ImageOverlay}></View>
           <Feather
-            name="eye"
+            name="external-link"
             size={16}
             color="#fff"
             style={styles.imageLocationIcon}

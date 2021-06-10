@@ -8,13 +8,17 @@ const settings = {
     // apiUrl: "http://192.168.43.61:9000/api",
     //virus
     // apiUrl: "http://192.168.0.104:9000/api",
-    apiUrl: "http://192.168.0.104:9000/api",
+
+    apiUrl: "https://dwt-backend.herokuapp.com/api",
+    // apiUrl: "http://192.168.0.110:9000/api",
   },
   staging: {
-    apiUrl: "http://192.168.0.104:9000/api",
+    apiUrl: "https://dwt-backend.herokuapp.com/api",
+    // apiUrl: "http://192.168.0.110:9000/api",
   },
   prod: {
-    apiUrl: "http://192.168.0.104:9000/api",
+    apiUrl: "https://dwt-backend.herokuapp.com/api",
+    // apiUrl: "http://192.168.0.110:9000/api",
   },
 };
 

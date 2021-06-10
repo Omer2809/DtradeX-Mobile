@@ -3,10 +3,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AccountScreen from "../screens/AccountScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import MessageDetailScreen from "../screens/MessageDetailScreen";
-import MyListingsScreen from "../screens/MyListingsScreen";
-import ListingEditScreen from "../screens/ListingEditScreen";
+import MyListingsScreen from "../screens/account/MyListingsScreen";
+import ListingEditScreen from "../screens/listingScreens/ListingEditScreen";
 import ViewImageScreen from "../screens/ViewImageScreen";
-import FavoritesScreen from "../screens/FavoritesScreen";
+import FavoritesScreen from "../screens/account/FavoritesScreen";
 
 const Stack = createStackNavigator();
 
