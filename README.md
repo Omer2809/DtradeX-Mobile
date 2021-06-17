@@ -4,17 +4,17 @@
 This is the Mobile version of my Application.
 
 <!-- images row 1 -->
-[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946335/Home_Screen_laikjp.jpg" alt="Home page of DtradeX" height="400"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946345/navigation_Screen_dndplb.jpg" alt="Home page of DtradeX" height="400"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946346/MessageDetails_eo0vvu.jpg" alt="Home page of DtradeX" height="400"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946348/NotificatonScreen_ncan9i.jpg" alt="Home page of DtradeX" height="400"/>](https:/dtradex-omer2809.vercel.app "home page")
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946335/Home_Screen_laikjp.jpg" alt="Home page of DtradeX" height="350"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946345/navigation_Screen_dndplb.jpg" alt="Home page of DtradeX" height="350"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946346/MessageDetails_eo0vvu.jpg" alt="Home page of DtradeX" height="350"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946348/NotificatonScreen_ncan9i.jpg" alt="Home page of DtradeX" height="350"/>](https:/dtradex-omer2809.vercel.app "home page")
 </br>
 </br>
 <!-- images row 2 -->
-[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946366/accountScreen_qd6zwx.jpg" alt="Home page of DtradeX" height="400"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946360/ListingDetailsScreen_1_r5fy0e.jpg" alt="Home page of DtradeX" height="400"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946362/Categories_SelectionScreen_alahrh.jpg" alt="Home page of DtradeX" height="400"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946338/NewListingScreen_ns1pmt.jpg" alt="Home page of DtradeX" height="400"/>](https:/dtradex-omer2809.vercel.app "home page")
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946366/accountScreen_qd6zwx.jpg" alt="Home page of DtradeX" height="350"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946360/ListingDetailsScreen_1_r5fy0e.jpg" alt="Home page of DtradeX" height="350"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946362/Categories_SelectionScreen_alahrh.jpg" alt="Home page of DtradeX" height="350"/>](https:/dtradex-omer2809.vercel.app "home page")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946338/NewListingScreen_ns1pmt.jpg" alt="Home page of DtradeX" height="350"/>](https:/dtradex-omer2809.vercel.app "home page")
 
 
 
