@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
@@ -23,13 +23,18 @@ const validationSchema = Yup.object().shape({
 
 function RegisterScreen() {
   const registerApi = useApi(usersApi.register);
-   const auth = useAuth();
+  const auth = useAuth();
   const [error, setError] = useState();
 
   const handleSubmit = async (userInfo) => {
     const result = await registerApi.request(userInfo);
 
     if (!result.ok) {
+      Alert.alert(
+        "Error",
+        "Sorry!! Could not register looks like their is an account with is email please try again..."
+      );
+
       if (result.data) setError(result.data.error);
       else {
         setError("An unexpected error occurred.");

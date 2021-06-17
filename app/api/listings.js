@@ -14,7 +14,7 @@ const updateListingPrice = (listingId, userId, bid) =>
 const addListing = (listing, onUploadProgress) => {
   const data = new FormData();
 
-  console.log("what we hav ensend to the addlistning:",listing.images);
+  // console.log("what we hav ensend to the addlistning:",listing.images);
 
   data.append("title", listing.title);
   data.append("price", listing.price);

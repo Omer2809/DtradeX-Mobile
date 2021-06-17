@@ -17,8 +17,8 @@ function TopImage({ listing, navigation }) {
         uri={listing.images[0].url}
       />
       <View style={styles.ImageOverlay}></View>
-      <Text style={styles.ImageDescription}>
-        <Text style={styles.ImageText} numberOfLines={4}>
+      <Text style={styles.ImageDescription} numberOfLines={4}>
+        <Text style={styles.ImageText} numberOfLines={1}>
           {listing.title}
         </Text>
         {`\n`}
