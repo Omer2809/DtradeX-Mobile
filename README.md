@@ -1,10 +1,10 @@
-# [DtradeX](https:/dtradex-omer2809.vercel.app)
+# [DtradeX](https://dtradex.netlify.app/)
 >	It's a  platform to buy or sell anything that you don't need any more.
 
 This is the Mobile version of my Application.
 
 <!-- images row 1 -->
-<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946335/Home_Screen_laikjp.jpg" alt="Home page of DtradeX" height="350"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946335/Home_Screen_laikjp.jpg" alt="Home page of DtradeX" height="350"/>}](https://dtradex.netlify.app/)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946345/navigation_Screen_dndplb.jpg" alt="Home page of DtradeX" height="350"/>&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946346/MessageDetails_eo0vvu.jpg" alt="Home page of DtradeX" height="350"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946348/NotificatonScreen_ncan9i.jpg" alt="Home page of DtradeX" height="350"/>
