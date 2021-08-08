@@ -1,7 +1,9 @@
 # [DtradeX](https://dtradex.netlify.app/)
 >	It's a  platform to buy or sell anything that you don't need any more.
 
-This is the Mobile version of my Application.
+This is the Mobile version of my Application. 
+</br>
+Scan [DtradeX](https://expo.dev/@mohdomer/dtradex?release-channel=staging)  using expo app. 
 
 <!-- images row 1 -->
 [<img src="https://res.cloudinary.com/deqjuoahl/image/upload/v1623946335/Home_Screen_laikjp.jpg" alt="Home page of DtradeX" height="350"/>}](https://dtradex.netlify.app/)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
